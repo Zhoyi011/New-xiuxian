@@ -407,7 +407,7 @@ function gameLoop() {
   
   gameState.dayAccumulator += 0.1;
   if (gameState.dayAccumulator >= 1) {
-    advanceTime(37); // 时间前进37天
+    advanceTime(365); // 时间前进一年
     gameState.dayAccumulator = 0;
   }
   
