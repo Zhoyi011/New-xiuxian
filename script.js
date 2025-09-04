@@ -335,45 +335,44 @@ function setTheme(theme) {
   }
 }
 
-// 重置游戏
+// 修改 resetGame 函数
 function resetGame() {
-  if (confirm("确定要重启人生吗？所有进度将会丢失！")) {
-    const defaultState = {
+  // 移除这里的确认对话框，因为已经在按钮点击时确认过了
+  const defaultState = {
     reincarnationCount: 0,
     reincarnationBenefits: {},
     autoGainRate: 0,
     lifespan: { current: 80, max: 80, total: 80 },
     age: 16,
-      qi: 0,
-      exp: 0,
-      spiritStones: 0,
-      realmIndex: 0,
-      rate: 0,
-      clickPower: 1,
-      spiritRootIndex: 0,
-      techniques: {},
-      pills: {},
-      skills: {},
-      cooldowns: {
-        meditate: 0,
-        explore: 0
-      },
-      events: [],
-      autoCultivate: false,
-      settings: gameState.settings, // 保留设置
-      dayAccumulator: 0,
-      stoneAccumulator: 0
-    };
-    
-    gameState = defaultState;
-    logDiv.innerHTML = "";
-    log("已重启人生，开始新的修仙之旅...");
-    saveGame();
-    updateUI();
-    renderTechniques();
-    renderPills();
-    renderSkills();
-  }
+    qi: 0,
+    exp: 0,
+    spiritStones: 0,
+    realmIndex: 0,
+    rate: 0,
+    clickPower: 1,
+    spiritRootIndex: 0,
+    techniques: {},
+    pills: {},
+    skills: {},
+    cooldowns: {
+      meditate: 0,
+      explore: 0
+    },
+    events: [],
+    autoCultivate: false,
+    settings: gameState.settings, // 保留设置
+    dayAccumulator: 0,
+    stoneAccumulator: 0
+  };
+  
+  gameState = defaultState;
+  logDiv.innerHTML = "";
+  log("已重启人生，开始新的修仙之旅...");
+  saveGame();
+  updateUI();
+  renderTechniques();
+  renderPills();
+  renderSkills();
 }
 
 // 播放音效
@@ -408,7 +407,7 @@ function gameLoop() {
   
   gameState.dayAccumulator += 0.1;
   if (gameState.dayAccumulator >= 1) {
-    advanceTime(73); // 时间前进73天
+    advanceTime(800); // 时间前进73天
     gameState.dayAccumulator = 0;
   }
   
@@ -1040,7 +1039,7 @@ function showEventNotification(message, type = "info") {
   }, 3000);
 }
 
-// 处理死亡
+// 修改 handleDeath 函数
 function handleDeath() {
   const modal = document.createElement('div');
   modal.style.cssText = `
@@ -1070,7 +1069,7 @@ function handleDeath() {
   content.innerHTML = `
     <h2>💀 寿元已尽 💀</h2>
     <p>你在 ${realms[gameState.realmIndex].name} 境界结束了此生，享年 ${Math.floor(gameState.age)} 岁</p>
-    <p>累计修为：${gameState.exp}</p>
+    <p>累计修为：${Math.floor(gameState.exp)}</p>
     <p>最高境界：${realms[gameState.realmIndex].name}</p>
     <div style="margin: 1rem 0;">
       <button id="reincarnateBtn" style="background: linear-gradient(45deg, #00b894, #00a382); margin: 0.5rem; padding: 10px 20px; border: none; border-radius: 5px; color: white; cursor: pointer;">转世重修</button>
@@ -1081,17 +1080,22 @@ function handleDeath() {
   modal.appendChild(content);
   document.body.appendChild(modal);
   
-  // 添加事件监听器
-  document.getElementById('reincarnateBtn').addEventListener('click', function() {
-    modal.remove();
-    reincarnate();
-  });
-  
-  document.getElementById('newLifeBtn').addEventListener('click', function() {
-    modal.remove();
-    resetGame();
+  // 使用事件委托来绑定点击事件
+  modal.addEventListener('click', function(e) {
+    if (e.target.id === 'reincarnateBtn') {
+      modal.remove();
+      reincarnate();
+    } else if (e.target.id === 'newLifeBtn') {
+      modal.remove();
+      resetGame();
+    }
   });
 }
+
+// 确保这些函数在全局作用域中可用
+window.reincarnate = reincarnate;
+window.resetGame = resetGame;
+
 
 // 日志功能
 function log(message) {
