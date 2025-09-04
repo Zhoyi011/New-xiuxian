@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>修仙奇缘 -俊毅制作</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>修仙奇缘1.2</h1>
+        <p class="subtitle">大道无形，修行无涯，点击之间，悟道成仙</p>
+      </div>
+      <button class="settings-btn" id="settingsBtn">设置</button>
+    </header>
+    
+    <div class="panel stats-panel">
+      <h2>修仙状态</h2>
+      <div class="stat-item">
+        <span>当前境界：</span>
+        <span class="stat-value realm-name" id="realm">真·凡人</span>
+      </div>
+     <div class="stat-item">
+  <span>剩余寿命：</span>
+  <span class="stat-value" id="lifespan">80 年</span>
+</div>
+      <div class="stat-item">
+  <span>当前年龄：</span>
+  <span class="stat-value" id="age">16 岁</span>
+</div> 
+      <div class="stat-item">
+        <span>灵气：</span>
+        <span class="stat-value" id="qi">0</span>
+      </div>
+      <div class="stat-item">
+        <span>灵气/秒：</span>
+        <span class="stat-value" id="rate">0</span>
+      </div>
+      <div class="stat-item">
+        <span>修为点数：</span>
+        <span class="stat-value" id="exp">0</span>
+      </div>
+      <div class="stat-item">
+        <span>灵石：</span>
+        <span class="stat-value" id="spirit-stones">0</span>
+      </div>
+      <div class="stat-item">
+        <span>灵根：</span>
+        <span class="stat-value" id="spirit-root">凡骨</span>
+      </div>
+      
+      <h3>境界进度</h3>
+      <div class="progress-container">
+        <div class="progress-bar" id="realm-progress"></div>
+      </div>
+      <div class="stat-item">
+        <span>下一境界：</span>
+        <span class="stat-value" id="next-realm">炼气期</span>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <div class="action-buttons">
+        <button class="cultivate-btn" id="cultivateBtn">
+          <div class="cooldown-text">修炼凝聚灵气</div>
+        </button>
+        <button id="breakBtn">突破境界</button>
+        <button id="meditateBtn">
+          <div class="cooldown-text">冥想悟道 (<span id="meditate-time">0</span>s)</div>
+        </button>
+        <button id="exploreBtn">
+          <div class="cooldown-text">探索秘境 (<span id="explore-time">0</span>s)</div>
+        </button>
+      </div>
+      
+      <div class="panel">
+        <div class="tab-container">
+          <div class="tab active" data-tab="upgrades">功法修炼</div>
+          <div class="tab" data-tab="alchemy">炼丹炼器</div>
+          <div class="tab" data-tab="skills">神通法术</div>
+        </div>
+        
+        <div class="tab-content active" id="upgrades">
+          <!-- 功法内容将由JS动态生成 -->
+        </div>
+        
+        <div class="tab-content" id="alchemy">
+          <!-- 丹药内容将由JS动态生成 -->
+        </div>
+        
+        <div class="tab-content" id="skills">
+          <!-- 神通内容将由JS动态生成 -->
+        </div>
+      </div>
+      
+      <div class="panel">
+        <h3>修仙日志</h3>
+        <div class="log-container" id="log"></div>
+      </div>
+    </div>
+
+   <!-- 修改 index.html 中的更新日志区域 -->
+<div class="update-log panel">
+  <h3>更新日志 (README.txt)</h3>
+  <div class="log-content" id="readme-content">
+    <div class="loading">正在加载更新日志...</div>
+  </div>
+</div>
+
+  <!-- 设置模态窗口 -->
+  <div class="modal" id="settingsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>游戏设置</h2>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      
+      <div class="setting-item">
+        <label class="setting-label">音效设置</label>
+        <label class="switch">
+          <input type="checkbox" id="soundToggle" checked>
+          <span class="slider"></span>
+        </label>
+        <span id="soundStatus">开启</span>
+      </div>
+      
+      <div class="setting-item">
+        <label class="setting-label">主题颜色</label>
+        <div class="theme-options">
+          <div class="theme-option active" style="background: linear-gradient(135deg, #0f0526 0%, #2a0c4e 100%);" data-theme="default"></div>
+          <div class="theme-option" style="background: linear-gradient(135deg, #260524 0%, #4a0c4e 100%);" data-theme="purple"></div>
+          <div class="theme-option" style="background: linear-gradient(135deg, #052626 0%, #0c4e4e 100%);" data-theme="teal"></div>
+          <div class="theme-option" style="background: linear-gradient(135deg, #262005 0%, #4e3c0c 100%);" data-theme="gold"></div>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <label class="setting-label">重置游戏</label>
+        <p>这将清除所有游戏数据，重新开始修仙之旅</p>
+        <button class="danger-btn" id="resetBtn">重启人生</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 音效元素 -->
+  <audio id="breakthroughSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
+  <audio id="cultivateSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-spell-healing-3161.mp3" preload="auto"></audio>
+  <audio id="rootUpSound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
