@@ -66,8 +66,7 @@ const skills = [
   { id: "inner_vision", name: "内视", desc: "提高冥想效率，减少冥想冷却时间", cost: 300, costType: "exp", effect: { meditateCdReduction: 0.2, meditateBonus: 0.3 } },
   { id: "change_to_qi", name: "换气术", desc: "用修为转换成修炼速度，不香吗？", cost: 5000, costType: "exp", effect: {rate: 50},maxLevel: 100},
   { id: "spirit_attraction", name: "聚灵术", desc: "每秒自动获得1个灵石", cost: 1000, costType: "exp", effect: { spiritStonesPerSecond: 1 },maxLevel: 10 },
-  { id: "wealth_accumulation", name: "敛财术", desc: "每秒自动获得5个灵石", cost: 4500, costType: "exp", effect: { spiritStonesPerSecond: 5 },maxLevel: 10 },
-  { id: "longevity_technique", name: "长生诀", desc: "每秒增加少量寿命", cost: 6000, costType: "exp", effect: { lifespanPerSecond: 0.0001 } }// 每秒增加约8.64秒寿命}
+  { id: "wealth_accumulation", name: "敛财术", desc: "每秒自动获得5个灵石", cost: 4500, costType: "exp", effect: { spiritStonesPerSecond: 5 },maxLevel: 10 }
 ];
 
 
@@ -408,7 +407,7 @@ function gameLoop() {
   
   gameState.dayAccumulator += 0.1;
   if (gameState.dayAccumulator >= 1) {
-    advanceTime(73); // 时间前进73天
+    advanceTime(183); // 时间前进73天
     gameState.dayAccumulator = 0;
   }
   
