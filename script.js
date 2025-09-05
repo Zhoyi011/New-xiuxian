@@ -37,7 +37,7 @@ const spiritRoots = [
 const techniques = [
   { id: "basic_breathing", name: "基础吐纳法", desc: "增加每秒灵气获取 0.5/s", cost: 10, costType: "qi", effect: { rate: 0.5 }, maxLevel: 50 },
   { id: "meridian", name: "小周天循环", desc: "增加点击灵气获取 +1", cost: 20, costType: "qi", effect: { click: 1 }, maxLevel: 100 },
-  { id: "auto_cultivate", name: "灵气感应", desc: "解锁自动修炼功能", cost: 70, costType: "qi", effect: { auto: true } },
+  { id: "auto_cultivate", name: "灵气感应", desc: "解锁自动修炼功能", cost: 70, costType: "qi", effect: { auto: true } , maxLevel: 2},
   { id: "spirit_attraction", name: "引灵术", desc: "增加所有灵气获取 10%", cost: 100, costType: "qi", effect: { multiplier: 0.1 }, maxLevel: 20 },
   { id: "advanced_breathing", name: "中级吐纳法", desc: "大幅增加每秒灵气获取 1/s", cost: 200, costType: "qi", effect: { rate: 1 }, maxLevel: 70, require: "basic_breathing" },
   { id: "advanced_basic_breathing", name: "高级吐纳法", desc: "增加每秒灵气获取 10/s", cost: 500, costType: "qi", effect: { rate: 10.0 }, maxLevel: 100, require: "advanced_breathing" },
