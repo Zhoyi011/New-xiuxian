@@ -1,25 +1,25 @@
 // 游戏数据
 const realms = [
   { name: "真·凡人", cost: 0, rate: 1, exp: 10, lifespan: 0},
-  { name: "炼气初期", cost: 20, rate: 1.5, exp: 50, lifespan: 10 },
-  { name: "炼气中期", cost: 50, rate: 2, exp: 100, lifespan: 20 },
-  { name: "炼气后期", cost: 100, rate: 4, exp: 200, lifespan: 40 },
-  { name: "筑基初期", cost: 250, rate: 8, exp: 300, lifespan: 60 },
-  { name: "筑基中期", cost: 500, rate: 15, exp: 400, lifespan: 80 },
-  { name: "筑基后期", cost: 1000, rate: 25, exp: 500, lifespan: 100 },
-  { name: "结丹初期", cost: 2500, rate: 40, exp: 800, lifespan: 150 },
-  { name: "结丹中期", cost: 5000, rate: 60, exp: 1600, lifespan: 200 },
-  { name: "结丹后期", cost: 10000, rate: 90, exp: 3200, lifespan: 250 },
-  { name: "元婴初期", cost: 20000, rate: 130, exp: 6400, lifespan: 400 },
-  { name: "元婴中期", cost: 40000, rate: 180, exp: 12800, lifespan: 500 },
-  { name: "元婴后期", cost: 80000, rate: 250, exp: 25600, lifespan: 600 },
-  { name: "化神初期", cost: 160000, rate: 500, exp: 51200, lifespan: 700 },
-  { name: "化神中期", cost: 320000, rate: 750, exp: 73200, lifespan: 800 },
-  { name: "化神后期", cost: 640000, rate: 1250, exp: 89200, lifespan: 900 },
-  { name: "炼虚期", cost: 1280000, rate: 1750, exp: 102400, lifespan: 1000 },
-  { name: "大乘期", cost: 2560000, rate: 2500, exp: 204800, lifespan: 1250 },
-  { name: "渡劫期", cost: 5120000, rate: 3500, exp: 409600, lifespan: 2500 },
-  { name: "真·仙", cost: 2560000, rate: 5000, exp: 819200, lifespan: 5000 }
+  { name: "炼气初期", cost: 100, rate: 1.5, exp: 50, lifespan: 10 },
+  { name: "炼气中期", cost: 250, rate: 2, exp: 100, lifespan: 20 },
+  { name: "炼气后期", cost: 500, rate: 4, exp: 200, lifespan: 40 },
+  { name: "筑基初期", cost: 1000, rate: 8, exp: 300, lifespan: 60 },
+  { name: "筑基中期", cost: 2000, rate: 15, exp: 400, lifespan: 80 },
+  { name: "筑基后期", cost: 4000, rate: 25, exp: 500, lifespan: 100 },
+  { name: "结丹初期", cost: 8000, rate: 40, exp: 800, lifespan: 150 },
+  { name: "结丹中期", cost: 16000, rate: 60, exp: 1600, lifespan: 200 },
+  { name: "结丹后期", cost: 32000, rate: 90, exp: 3200, lifespan: 250 },
+  { name: "元婴初期", cost: 64000, rate: 130, exp: 6400, lifespan: 400 },
+  { name: "元婴中期", cost: 128000, rate: 180, exp: 12800, lifespan: 500 },
+  { name: "元婴后期", cost: 256000, rate: 250, exp: 25600, lifespan: 600 },
+  { name: "化神初期", cost: 512000, rate: 500, exp: 51200, lifespan: 700 },
+  { name: "化神中期", cost: 1024000, rate: 750, exp: 73200, lifespan: 800 },
+  { name: "化神后期", cost: 2048000, rate: 1250, exp: 89200, lifespan: 900 },
+  { name: "炼虚期", cost: 4096000, rate: 1750, exp: 102400, lifespan: 1000 },
+  { name: "大乘期", cost: 8182000, rate: 2500, exp: 204800, lifespan: 1250 },
+  { name: "渡劫期", cost: 15000000, rate: 3500, exp: 409600, lifespan: 2500 },
+  { name: "真·仙", cost: 50000000, rate: 5000, exp: 819200, lifespan: 5000 }
 ];
 
 const spiritRoots = [
@@ -30,7 +30,8 @@ const spiritRoots = [
   { name: "地灵根", multiplier: 3 },
   { name: "天灵根", multiplier: 5 },
   { name: "仙灵根", multiplier: 8 },
-  { name: "混沌灵根", multiplier: 16 }
+  { name: "混沌灵根", multiplier: 16 },
+  { name: "真仙灵根", multipier:32 }
 ];
 
 // 功法数据
@@ -52,10 +53,7 @@ const pills = [
   { id: "advanced_condense_qi", name: "高阶凝气丹", desc: "十分钟内灵气获取速度翻十倍", cost: 45, costType: "spiritStones", effect: { rateMultiplier: 10, duration: 600 } },
   { id: "foundation", name: "筑基丹", desc: "增加突破成功率 20%", cost: 25, costType: "spiritStones", effect: { breakThrough: 0.2 } },
   { id: "spirit_gathering", name: "聚灵丹", desc: "立即获得200点灵气", cost: 10, costType: "spiritStones", effect: { immediateQi: 200 } },
-  { id: "root_awakening", name: "醒灵丹", desc: "有几率提升灵根品质", cost: 30, costType: "spiritStones", effect: { rootUp: 0.3 } },
-  { id: "advanced_root_awakening", name: "高级醒灵丹", desc: "一定提升灵根品质", cost: 150, costType: "spiritStones", effect: { rootUp: 1 } },
-  { id: "longevity_pill", name: "延寿丹",  desc: "增加10年寿命", cost: 100, costType: "spiritStones", effect: { addLifespan: 10 } },
-  { id: "immortality_pill", name: "长生丹", desc: "增加50年寿命", cost: 500, costType: "spiritStones", effect: { addLifespan: 50 } }
+  { id: "advanced_root_awakening", name: "高级醒灵丹", desc: "90%概率提升灵根品质", cost: 150, costType: "spiritStones", effect: { rootUp: 0.9 } }
 ];
 
 // 神通数据
@@ -236,7 +234,7 @@ function getLocalReadme() {
 编程师:DeepSeek3.1 & 吕俊毅
 
 【如何游玩】
-1.访问 https://new-xiuxian.vercel.app/ 即可开始游戏
+1.访问 https://new-xiuxian.vercel.app/ 即可开始游戏(无网也能玩)
 2.或下载全部文件保存在同个文件夹后双击index.html
 
 【注意事项】
@@ -245,15 +243,10 @@ function getLocalReadme() {
 
 【特殊玩法】
 1.可到script.js 更改境界需求、功法所需灵气等参数
-2.可按F12，在控制台修改游戏数据
-3.设置里可以调整音效和主题颜色
+2.(Google)可按F12，在控制台修改游戏数据
+3.设置里可以重开人生和调整主题颜色
 
-祝你玩得愉快！
-
-【最新版本】1.1
-- 修复iOS/Safari无法快速点击错误
-- 优化移动端体验
-- 添加自动保存功能`;
+祝你玩得愉快！ `;
 }
 
 // 初始化设置
@@ -407,7 +400,7 @@ function gameLoop() {
   
   gameState.dayAccumulator += 0.1;
   if (gameState.dayAccumulator >= 1) {
-    advanceTime(183); // 时间前进73天
+    advanceTime(183); // 时间前进183天
     gameState.dayAccumulator = 0;
   }
   

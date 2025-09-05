@@ -13,7 +13,7 @@
 1.下载全部文件( index.html, script.js, style.css)。
 2.保存在同个文件夹。
 3.双击index.html (如果你要高级点，就打开cmd，写cd "（文件夹位置）"，Enter，然后再写index.html。
-4.本人已开启了网页版，将自动更新最新版本
+4.本人已开启了网页版，将自动更新最新版本（离线也能玩）
   https://new-xiuxian.vercel.app/
 
 【注意事项】
