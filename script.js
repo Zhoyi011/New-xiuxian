@@ -1,12 +1,12 @@
 // 游戏数据
 const realms = [
-  { name: "真·凡人", cost: 0, rate: 1, exp: 1, lifespan: 0},
-  { name: "炼气初期", cost: 20, rate: 1.5, exp: 10, lifespan: 10 },
-  { name: "炼气中期", cost: 50, rate: 2, exp: 25, lifespan: 20 },
-  { name: "炼气后期", cost: 100, rate: 4, exp: 50, lifespan: 40 },
-  { name: "筑基初期", cost: 250, rate: 8, exp: 100, lifespan: 60 },
-  { name: "筑基中期", cost: 500, rate: 15, exp: 200, lifespan: 80 },
-  { name: "筑基后期", cost: 1000, rate: 25, exp: 400, lifespan: 100 },
+  { name: "真·凡人", cost: 0, rate: 1, exp: 10, lifespan: 0},
+  { name: "炼气初期", cost: 20, rate: 1.5, exp: 50, lifespan: 10 },
+  { name: "炼气中期", cost: 50, rate: 2, exp: 100, lifespan: 20 },
+  { name: "炼气后期", cost: 100, rate: 4, exp: 200, lifespan: 40 },
+  { name: "筑基初期", cost: 250, rate: 8, exp: 300, lifespan: 60 },
+  { name: "筑基中期", cost: 500, rate: 15, exp: 400, lifespan: 80 },
+  { name: "筑基后期", cost: 1000, rate: 25, exp: 500, lifespan: 100 },
   { name: "结丹初期", cost: 2500, rate: 40, exp: 800, lifespan: 150 },
   { name: "结丹中期", cost: 5000, rate: 60, exp: 1600, lifespan: 200 },
   { name: "结丹后期", cost: 10000, rate: 90, exp: 3200, lifespan: 250 },
@@ -35,11 +35,12 @@ const spiritRoots = [
 
 // 功法数据
 const techniques = [
-  { id: "basic_breathing", name: "基础吐纳法", desc: "增加每秒灵气获取 0.2/s", cost: 10, costType: "qi", effect: { rate: 0.2 }, maxLevel: 100 },
+  { id: "basic_breathing", name: "基础吐纳法", desc: "增加每秒灵气获取 0.5/s", cost: 10, costType: "qi", effect: { rate: 0.5 }, maxLevel: 50 },
   { id: "meridian", name: "小周天循环", desc: "增加点击灵气获取 +1", cost: 20, costType: "qi", effect: { click: 1 }, maxLevel: 100 },
-  { id: "auto_cultivate", name: "灵气感应", desc: "解锁自动修炼功能", cost: 70, costType: "qi", effect: { auto: true }, maxLevel: 2 },
+  { id: "auto_cultivate", name: "灵气感应", desc: "解锁自动修炼功能", cost: 70, costType: "qi", effect: { auto: true } },
   { id: "spirit_attraction", name: "引灵术", desc: "增加所有灵气获取 10%", cost: 100, costType: "qi", effect: { multiplier: 0.1 }, maxLevel: 20 },
-  { id: "advanced_breathing", name: "高级吐纳法", desc: "大幅增加每秒灵气获取 1/s", cost: 200, costType: "qi", effect: { rate: 1 }, maxLevel: 100, require: "basic_breathing" },
+  { id: "advanced_breathing", name: "中级吐纳法", desc: "大幅增加每秒灵气获取 1/s", cost: 200, costType: "qi", effect: { rate: 1 }, maxLevel: 70, require: "basic_breathing" },
+  { id: "advanced_basic_breathing", name: "高级吐纳法", desc: "增加每秒灵气获取 10/s", cost: 500, costType: "qi", effect: { rate: 10.0 }, maxLevel: 100, require: "advanced_breathing" },
   { id: "auto_gain", name: "灵气自生术", desc: "每秒自动获得1点灵气", cost: 300, costType: "qi", effect: { autoGain: 1 }, maxLevel: 10 },
   { id: "advanced_auto_gain", name: "高级灵气自生术", desc: "每秒自动获得5点灵气", cost: 1200, costType: "qi", effect: { autoGain: 5 }, maxLevel: 10, require: "auto_gain" },
 ];
@@ -59,10 +60,10 @@ const pills = [
 
 // 神通数据
 const skills = [
-  { id: "fireball", name: "火球术", desc: "初级攻击法术，探索时增加收益", cost: 20, costType: "exp", effect: { exploreBonus: 0.2 } },
-  { id: "wind_walk", name: "御风诀", desc: "增加探索效率，减少探索冷却时间", cost: 40, costType: "exp", effect: { exploreCdReduction: 0.2 } },
-  { id: "spirit_sense", name: "神识外放", desc: "可感知更远处的资源，增加探索收获", cost: 60, costType: "exp", effect: { exploreBonus: 0.5 } },
-  { id: "inner_vision", name: "内视", desc: "提高冥想效率，减少冥想冷却时间", cost: 30, costType: "exp", effect: { meditateCdReduction: 0.2, meditateBonus: 0.3 } },
+  { id: "fireball", name: "火球术", desc: "初级攻击法术，探索时增加收益", cost: 200, costType: "exp", effect: { exploreBonus: 0.2 } },
+  { id: "wind_walk", name: "御风诀", desc: "增加探索效率，减少探索冷却时间", cost: 400, costType: "exp", effect: { exploreCdReduction: 0.2 } },
+  { id: "spirit_sense", name: "神识外放", desc: "可感知更远处的资源，增加探索收获", cost: 600, costType: "exp", effect: { exploreBonus: 0.5 } },
+  { id: "inner_vision", name: "内视", desc: "提高冥想效率，减少冥想冷却时间", cost: 300, costType: "exp", effect: { meditateCdReduction: 0.2, meditateBonus: 0.3 } },
   { id: "change_to_qi", name: "换气术", desc: "用修为转换成修炼速度，不香吗？", cost: 5000, costType: "exp", effect: {rate: 50},maxLevel: 100},
   { id: "spirit_attraction", name: "聚灵术", desc: "每秒自动获得1个灵石", cost: 1000, costType: "exp", effect: { spiritStonesPerSecond: 1 },maxLevel: 10 },
   { id: "wealth_accumulation", name: "敛财术", desc: "每秒自动获得5个灵石", cost: 4500, costType: "exp", effect: { spiritStonesPerSecond: 5 },maxLevel: 10 },
@@ -364,7 +365,7 @@ function resetGame() {
     dayAccumulator: 0,
     stoneAccumulator: 0
   };
-  
+
   gameState = defaultState;
   logDiv.innerHTML = "";
   log("已重启人生，开始新的修仙之旅...");
